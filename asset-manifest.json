@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pixie/static/css/main.e6c13ad2.css",
+    "main.js": "/pixie/static/js/main.8308639e.js",
+    "static/js/488.48471fd0.chunk.js": "/pixie/static/js/488.48471fd0.chunk.js",
+    "index.html": "/pixie/index.html",
+    "main.e6c13ad2.css.map": "/pixie/static/css/main.e6c13ad2.css.map",
+    "main.8308639e.js.map": "/pixie/static/js/main.8308639e.js.map",
+    "488.48471fd0.chunk.js.map": "/pixie/static/js/488.48471fd0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.8308639e.js"
+  ]
+}
