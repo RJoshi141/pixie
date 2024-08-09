@@ -1,25 +1,30 @@
+/* General App Styles */
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background: linear-gradient(135deg, #f0f8ff, #e6e6fa); /* Gradient background */
 }
 
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Adjusted margin */
 }
 
 .header h1 {
   font-size: 3rem;
   color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font */
+  animation: bounce 1s infinite; /* Add bouncing animation */
 }
 
 .description {
   font-size: 1.2rem;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Adjusted margin */
   max-width: 600px;
+  text-align: center;
 }
 
 .controls {
@@ -32,11 +37,21 @@
 .controls label {
   margin-right: 10px;
   font-size: 1.1rem;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font */
 }
 
 .controls select {
   padding: 5px;
   font-size: 1rem;
+  border-radius: 8px; /* Rounded corners */
+  border: 2px solid #007bff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+.controls select:hover {
+  border-color: #0056b3;
+  transform: scale(1.05); /* Slight enlargement effect */
 }
 
 .controls button {
@@ -46,30 +61,73 @@
   color: white;
   cursor: pointer;
   font-size: 1rem;
+  border-radius: 8px; /* Rounded corners */
+  transition: all 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .controls button:hover {
   background-color: #0056b3;
+  transform: scale(1.05); /* Slight enlargement effect */
+}
+
+.toggle-palette {
+  background-color: #28a745;
+}
+
+.toggle-palette:hover {
+  background-color: #218838;
+}
+
+.main-content {
+  display: flex;
+  gap: 30px; /* Increased space between grid and palette */
 }
 
 .grid-container {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 50px;
 }
 
 .grid {
   display: grid;
-  background-color: #fff; /* Keep the grid background white */
+  background-color: transparent;
+  border-radius: 10px; /* Rounded corners */
 }
 
 .pixel {
-  border: 1px solid #d0d0d0; /* Lighter grey border for the grid pixels */
+  border: 1px solid #d0d0d0;
   cursor: pointer;
+  box-sizing: border-box;
+  background-color: transparent;
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.pixel:hover {
+  transform: scale(1.1); /* Slight enlargement effect on hover */
 }
 
 .palette {
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 1; /* Start visible */
+  transition: opacity 0.5s ease; /* Smooth fade in/out */
+}
+
+.palette-enter {
+  opacity: 0;
+}
+
+.palette-enter-active {
+  opacity: 1;
+}
+
+.palette-exit {
+  opacity: 1;
+}
+
+.palette-exit-active {
+  opacity: 0;
 }
