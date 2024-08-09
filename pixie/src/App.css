@@ -1,18 +1,63 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: #333;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.grid-container {
+  display: flex;
+  align-items: flex-start;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(10, 30px);
   gap: 1px;
-  margin-top: 20px;
+  background-color: #fff; /* Keep the grid background white */
+  margin-right: 20px;
 }
 
 .pixel {
   width: 30px;
   height: 30px;
-  border: 1px solid #ccc;
+  border: 1px solid #d0d0d0; /* Lighter grey border for the grid pixels */
   cursor: pointer;
+}
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
