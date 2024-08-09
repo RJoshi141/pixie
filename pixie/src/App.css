@@ -75,9 +75,6 @@
   background-color: #28a745;
 }
 
-.toggle-palette:hover {
-  background-color: #218838;
-}
 
 .main-content {
   display: flex;
@@ -130,4 +127,81 @@
 
 .palette-exit-active {
   opacity: 0;
+}
+
+
+/* Toggle Switch Styles */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between switch and text */
+}
+
+.toggle-palette {
+  width: 60px;
+  height: 30px;
+  background-color: #e6e6e6;
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+
+.toggle-palette:before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+
+.toggle-palette.on {
+  background-color: #28a745; /* Background color when on */
+}
+
+.toggle-palette.on:before {
+  transform: translateX(32px); /* Move slider when on */
+}
+
+.toggle-palette.on:after {
+  transform: translateX(10px); /* Move slider when off */
+}
+
+
+
+.toggle-palette-text {
+  font-size: 1rem;
+  color: #333; /* Text color */
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.toggle-palette-text.show {
+  color: #333; /* Color when palette is visible */
+}
+
+.toggle-palette-text.hide {
+  color: #333; /* Color when palette is hidden */
+}
+
+
+.main-content {
+  display: flex;
+  gap: 30px; /* Space between grid and palette */
+  transition: transform 0.5s ease;
+}
+
+.grid-container {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Space between grid and palette */
+  transition: width 0.5s ease;
+}
+
+.grid-container.palette-hidden {
+  transform: translateX(50px); /* Shift grid to center when palette is hidden */
 }

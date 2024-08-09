@@ -3,12 +3,12 @@ import { SketchPicker } from 'react-color';
 import './App.css';
 
 function App() {
-  const [color, setColor] = useState('transparent'); // Default color to transparent
-  const [gridSize, setGridSize] = useState(10); // Default grid size
-  const [pixels, setPixels] = useState(Array(100).fill('transparent')); // Initial size 10x10, default transparent
-  const [history, setHistory] = useState([Array(100).fill('transparent')]); // History for undo/redo
-  const [historyIndex, setHistoryIndex] = useState(0); // Current index in history
-  const [showPalette, setShowPalette] = useState(true); // State to toggle palette visibility
+  const [color, setColor] = useState('transparent');
+  const [gridSize, setGridSize] = useState(10);
+  const [pixels, setPixels] = useState(Array(100).fill('transparent'));
+  const [history, setHistory] = useState([Array(100).fill('transparent')]);
+  const [historyIndex, setHistoryIndex] = useState(0);
+  const [showPalette, setShowPalette] = useState(true);
   const canvasRef = useRef(null);
   const gridRef = useRef(null);
 
@@ -16,7 +16,6 @@ function App() {
     const newPixels = [...pixels];
     newPixels[index] = color;
     setPixels(newPixels);
-    // Update history
     setHistory(prevHistory => [
       ...prevHistory.slice(0, historyIndex + 1),
       newPixels
@@ -27,8 +26,8 @@ function App() {
   const handleGridSizeChange = (event) => {
     const size = parseInt(event.target.value, 10);
     setGridSize(size);
-    setPixels(Array(size * size).fill('transparent')); // Reset pixels array for new grid size
-    setHistory([Array(size * size).fill('transparent')]); // Reset history for new grid size
+    setPixels(Array(size * size).fill('transparent'));
+    setHistory([Array(size * size).fill('transparent')]);
     setHistoryIndex(0);
   };
 
@@ -53,10 +52,10 @@ function App() {
   const saveImage = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const pixelSize = 300 / gridSize; // Adjust size based on grid size
+    const pixelSize = 300 / gridSize;
 
-    canvas.width = 300; // Fixed width
-    canvas.height = 300; // Fixed height
+    canvas.width = 300;
+    canvas.height = 300;
 
     pixels.forEach((pixel, index) => {
       const x = (index % gridSize) * pixelSize;
@@ -94,42 +93,49 @@ function App() {
           value={gridSize}
           onChange={handleGridSizeChange}
         >
-          {[10, 20, 30, 40, 50].map(size => (
+          {[5, 10, 15, 20, 25, 30, 40].map(size => (
             <option key={size} value={size}>{size}x{size}</option>
           ))}
         </select>
         <button onClick={undo} disabled={historyIndex === 0}>Undo</button>
         <button onClick={redo} disabled={historyIndex === history.length - 1}>Redo</button>
-        <button className="toggle-palette" onClick={togglePalette}>
-          {showPalette ? 'Hide Palette' : 'Show Palette'}
-        </button>
+        <div className="toggle-container">
+          <div 
+            className={`toggle-palette ${showPalette ? 'on' : ''}`}
+            onClick={togglePalette}
+          >
+            <div className={`toggle-slider ${showPalette ? 'on' : ''}`}></div>
+          </div>
+          <span className={`toggle-palette-text ${showPalette ? 'show' : 'hide'}`}>
+            {showPalette ? 'Hide Palette' : 'Show Palette'}
+          </span>
+        </div>
       </div>
-      <div className="main-content">
+      <div className={`main-content ${!showPalette ? 'grid-only' : 'grid-container'}`}>
         <div
-          className="grid-container"
-          ref={gridRef}
-        >
-          <div className="grid" style={{
+          className="grid"
+          style={{
             gridTemplateColumns: `repeat(${gridSize}, ${300 / gridSize}px)`,
             gridTemplateRows: `repeat(${gridSize}, ${300 / gridSize}px)`,
-            width: '300px', // Fixed width
-            height: '300px' // Fixed height
-          }}>
-            {pixels.map((pixel, index) => (
-              <div
-                key={index}
-                className="pixel"
-                style={{ backgroundColor: pixel }}
-                onMouseDown={() => handlePixelFill(index)} // Color fill on click only
-              />
-            ))}
-          </div>
-          {showPalette && (
-            <div className="palette">
-              <SketchPicker color={color} onChangeComplete={handleColorChange} />
-            </div>
-          )}
+            width: '300px',
+            height: '300px'
+          }}
+          ref={gridRef}
+        >
+          {pixels.map((pixel, index) => (
+            <div
+              key={index}
+              className="pixel"
+              style={{ backgroundColor: pixel }}
+              onMouseDown={() => handlePixelFill(index)}
+            />
+          ))}
         </div>
+        {showPalette && (
+          <div className="palette">
+            <SketchPicker color={color} onChangeComplete={handleColorChange} />
+          </div>
+        )}
       </div>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
     </div>
